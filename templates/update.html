@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+
+
+{%block body%}
+
+ 
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+
+
+
+            
+            <div class="col mb-5">
+                <div class="card h-100">
+                <form method="POST">
+                    {% csrf_token %}
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                           <h5>{{form.title}}</h5>
+                            
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="text-center card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <a class="btn btn-outline-dark mt-auto" href="{%url 'home' %}">Cancel</a>
+                        <button type="submit" value="Save" class="text-center btn btn-outline-dark mt-auto">Submit</button>
+                    </div>
+                </form>
+                    
+
+                </div>
+            </div>
+
+
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock body %}

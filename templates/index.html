@@ -1,17 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do App</title>
-</head>
-<body>
-    
+{% extends "base.html"%}
 
-    <center>
-        <h1>
-            hello world, this is ToDo application.
-        </h1>
-    </center>
-</body>
-</html>
+
+{%block body%}
+
+
+
+
+ <!-- form control -->
+ <form class="container col-4 mt-3" method="post">
+    {% csrf_token %}
+    
+        
+        <div class="text-center">
+          <label for="inputPassword2" class="visually-hidden">Add task</label>
+          <input type="text" name="title" class="form-control">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary mt-2">Confirm identity</button>
+        </div>
+          
+        
+      
+  </form>
+ 
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+
+
+           
+
+
+{% if lists %}
+        {%for i in lists %}
+            
+            
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <!-- <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /> -->
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{i.title}}</h5>
+                            <!-- Product reviews-->
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                            </div>
+                            {{i.created_at}}
+
+                            
+                            
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" href="{% url 'task_delete' i.id%}">Remove</a>
+                            <a class="btn btn-outline-dark mt-auto" href="{% url 'task_update' i.id%}">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+{% else %}
+
+no item
+{% endif %}
+
+
+
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+{%endblock body%}
